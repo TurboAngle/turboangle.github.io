@@ -127,3 +127,21 @@ a:hover {
     padding: 0.8rem 1.4rem;
   }
 }
+.server-status {
+  background: var(--bg-light);
+  border: 2px solid var(--accent);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-top: 1.5rem;
+  display: inline-block;
+  font-weight: bold;
+  color: var(--accent-light);
+  box-shadow: 0 0 10px rgba(255, 123, 0, 0.3);
+  animation: fadeIn 1s ease;
+}
+.server-status span {
+  display: block;
+  margin-top: 0.4rem;
+  color: #ccc;
+  font-weight: normal;
+}
