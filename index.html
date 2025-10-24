@@ -1,41 +1,136 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<title>TurboAngle</title>
-<meta name="keywords" content="ページのキーワードA,B,C">
-<meta name="description" content="ページの説明">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="index.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TurboAngle Network | Minecraft Server</title>
+  <style>
+    :root {
+      --accent: #2ecc71;
+      --bg: #f5f6fa;
+      --text: #2c3e50;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background: white;
+      padding: 2rem 1rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 1rem;
+      color: #555;
+    }
+
+    main {
+      flex: 1;
+      padding: 2rem 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    section {
+      margin-bottom: 3rem;
+    }
+
+    .ip-box {
+      display: inline-block;
+      background: white;
+      border: 2px solid var(--accent);
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: var(--accent);
+      margin-top: 1rem;
+    }
+
+    footer {
+      background: #ecf0f1;
+      padding: 1rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .links a {
+      display: inline-block;
+      margin: 0 0.5rem;
+    }
+  </style>
 </head>
 <body>
-<div id="outer">
-<header><div id="header-container"><div id="head-inner"><h1>あなたのＨＰタイトル</h1>
-<p class="description">あなたのＨＰの説明文</p></div></div>
-</header>
-<div id="content-wrapper">
-<main>
-<div id="inner">
-<h2>記事ページ見出し・大</h2>
-<p>文章あれこれ</p>
-<h3>記事ページ見出し・中</h3>
-<p>文章あれこれ</p>
-<h4>記事ページ見出し・小</h4>
-<p>文章あれこれ</p>
-</div>
-</main>
-<aside>
-<div id="middle-inner">
-<div class="side-title">menu</div>
-<div class="side">
-<ul>
-<li>記事ページへのリンク</li>
-<li>記事ページへのリンク</li>
-</ul>
-</div>
-</div>
-</aside>
-</div>
-<footer>© 2010 あなたのホームページ</footer>
-</div></body>
+  <header>
+    <h1>TurboAngle Network</h1>
+    <p>The Great JP Minecraft Server!</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>サーバーについて</h2>
+      <p>
+        TurboAngle Network は、日本プレイヤー向けのマルチサーバーネットワークです。  
+        快適なプレイ環境と、様々なモードを楽しめる世界を提供します。
+      </p>
+    </section>
+
+    <section>
+      <h2>接続方法</h2>
+      <div class="ip-box">play.turboangle.net</div>
+      <p>対応バージョン: 1.8 ～ 1.21.x</p>
+    </section>
+
+    <section>
+      <h2>リンク</h2>
+      <div class="links">
+        <a href="https://discord.gg/xxxxxx" target="_blank">Discord</a> |
+        <a href="https://twitter.com/xxxxxx" target="_blank">Twitter</a> |
+        <a href="https://eaglercraft.net/" target="_blank">Eaglercraft</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 TurboAngle Network. All Rights Reserved.
+  </footer>
+</body>
 </html>
