@@ -3,69 +3,75 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TurboAngle Network | Minecraft Server</title>
-  <link rel="icon" href="server-icon.png" type="image/png" />
+  <meta name="description" content="TurboAngle Minecraft Server 紹介サイト。サーバーの最新ステータスと参加方法を紹介しています。" />
+  <meta name="keywords" content="TurboAngle" />
+  <meta name="author" content="TurboAngle" />
+  <title>TurboAngle Server</title>
   <link rel="stylesheet" href="index.css" />
+  <link rel="icon" type="image/png" href="server-icon.png" />
 </head>
 <body>
   <header>
-    <img src="server-icon.png" alt="Server Icon" class="logo" />
-    <h1>TurboAngle Network</h1>
-    <p>The Great JP Minecraft Server!</p>
+    <img src="server-icon.png" alt="Server Icon" class="icon" />
+    <h1>TurboAngle Minecraft Server</h1>
+    <p class="subtitle">みんなで遊べるシンプル＆快適なマイクラサーバー</p>
   </header>
 
   <main>
     <section>
-      <h2>サーバーについて</h2>
-      <p>
-        TurboAngle Network は、日本プレイヤー向けのマルチサーバーネットワークです。  
-        快適なプレイ環境と、様々なモードを楽しめる世界を提供します。
-      </p>
+      <h2>サーバー情報</h2>
+      <ul>
+        <li><b>アドレス：</b> turboangle.f5.si</li>
+        <li><b>バージョン：</b> 1.16.5 ～ 最新</li>
+        <li><b>モード：</b> サバイバル / ロビー</li>
+      </ul>
+    </section>
+
+    <section id="status-section">
+      <h2>サーバーステータス</h2>
+      <div id="status-box">取得中...</div>
     </section>
 
     <section>
-      <h2>接続方法</h2>
-      <div class="ip-box">turboangle.f5.si</div>
-      <p>対応バージョン: 1.8 ～ 1.21.10</p>
-    </section>
-
-    <section>
-      <h2>リンク</h2>
-      <div class="links">
-        <a href="https://discord.gg/2342TecXeJ" target="_blank">Discord</a> |
-        <a href="https://www.youtube.com/@TurboAngle" target="_blank">Youtube</a>
-      </div>
+      <h2>参加方法</h2>
+      <p>マイクラのマルチプレイでサーバーアドレス「<b>turboangle.f5.si</b>」を追加してください。<br>
+      最新バージョンでも古いバージョンでも参加できます。</p>
     </section>
   </main>
 
   <footer>
-    © 2025 TurboAngle Network. All Rights Reserved.
+    <p>© 2025 TurboAngle Server | Hosted on <a href="https://github.io">GitHub Pages</a></p>
   </footer>
+
   <script>
     // --- サーバーステータス取得 ---
-    fetch("https://api.mcstatus.io/v2/status/java/turboangle.f5.si")
-      .then(res => res.json())
-      .then(data => {
-        const status = document.createElement("div");
-        status.className = "server-status";
-        
+    async function updateServerStatus() {
+      const statusBox = document.getElementById("status-box");
+      statusBox.textContent = "最新情報を取得中...";
+
+      try {
+        // キャッシュ防止のためにタイムスタンプを追加
+        const response = await fetch("https://api.mcstatus.io/v2/status/java/turboangle.f5.si?time=" + Date.now(), { cache: "no-store" });
+        const data = await response.json();
+
         if (data.online) {
-          status.innerHTML = `
+          statusBox.innerHTML = `
             🟢 サーバーはオンラインです<br>
             <span>プレイヤー数: ${data.players.online} / ${data.players.max}</span>
           `;
         } else {
-          status.innerHTML = "🔴 サーバーはオフラインです";
+          statusBox.innerHTML = "🔴 サーバーはオフラインです";
         }
-        
-        document.querySelector("main").appendChild(status);
-      })
-      .catch(() => {
-        const status = document.createElement("div");
-        status.className = "server-status";
-        status.innerHTML = "⚠️ サーバーステータスの取得に失敗しました";
-        document.querySelector("main").appendChild(status);
-      });
+      } catch (error) {
+        statusBox.innerHTML = "⚠️ ステータスの取得に失敗しました";
+      }
+    }
+
+    // ページ読み込み時に更新
+    window.addEventListener("load", updateServerStatus);
+
+    // 60秒ごとに自動更新（必要に応じて調整可）
+    setInterval(updateServerStatus, 60000);
   </script>
 </body>
 </html>
