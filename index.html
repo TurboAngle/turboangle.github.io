@@ -29,7 +29,6 @@
   }
   </script>
 </head>
-
 <body>
   <header>
     <img src="server-icon.png" alt="Server Icon" class="logo" />
@@ -46,8 +45,9 @@
       </p>
     </section>
 
-    <section>
+    <section id="server-info">
       <h2>接続方法</h2>
+      <div id="server-status" class="server-status">⏳ サーバーステータスを取得中...</div>
       <div class="ip-box">turboangle.f5.si</div>
       <p>対応バージョン: 1.8 ～ 1.21.10</p>
     </section>
@@ -59,11 +59,6 @@
         <a href="https://www.youtube.com/@TurboAngle" target="_blank">Youtube</a>
       </div>
     </section>
-
-    <section id="status-section">
-      <h2>サーバーステータス</h2>
-      <div id="status-box" class="ip-box">取得中...</div>
-    </section>
   </main>
 
   <footer>
@@ -71,29 +66,30 @@
   </footer>
 
   <script>
-    async function updateServerStatus() {
-      const statusBox = document.getElementById("status-box");
-      statusBox.textContent = "最新ステータス取得中...";
-      try {
-        const res = await fetch("https://api.mcstatus.io/v2/status/java/turboangle.f5.si?time=" + Date.now(), { cache: "no-store" });
-        const data = await res.json();
+    // --- サーバーステータス取得 ---
+    function updateServerStatus() {
+      fetch("https://api.mcstatus.io/v2/status/java/turboangle.f5.si")
+        .then(res => res.json())
+        .then(data => {
+          const statusDiv = document.getElementById("server-status");
 
-        if (data.online) {
-          statusBox.innerHTML = `
-            🟢 サーバーはオンラインです<br>
-            <span>プレイヤー数: ${data.players.online} / ${data.players.max}</span>
-          `;
-        } else {
-          statusBox.innerHTML = "🔴 サーバーはオフラインです";
-        }
-      } catch (e) {
-        statusBox.innerHTML = "⚠️ ステータスの取得に失敗しました";
-      }
+          if (data.online) {
+            statusDiv.innerHTML = `
+              🟢 サーバーはオンラインです<br>
+              <span>プレイヤー数: ${data.players.online} / ${data.players.max}</span>
+            `;
+          } else {
+            statusDiv.innerHTML = "🔴 サーバーはオフラインです";
+          }
+        })
+        .catch(() => {
+          document.getElementById("server-status").innerHTML =
+            "⚠️ サーバーステータスの取得に失敗しました";
+        });
     }
 
-    // ページ読み込み時と1分ごとに更新
-    window.addEventListener("load", updateServerStatus);
-    setInterval(updateServerStatus, 60000);
+    // ページ読み込み時に更新
+    updateServerStatus();
   </script>
 </body>
 </html>
