@@ -1,70 +1,81 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TurboAngle | Minecraft Server</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
-</head>
-<body>
-    <header class="header">
-        <div class="logo-container">
-            <img src="TRロゴデザイン (1).png" alt="TurboAngle Logo" class="logo-img">
-            <span class="logo-text">TurboAngle</span>
-        </div>
-        <nav class="nav">
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#rules">Rules</a></li>
-            </ul>
-        </nav>
-    </header>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>TurboAngle Network</title>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">AWAKEN THE ANCIENT</h1>
-            <p class="hero-subtitle">静寂の遺跡で、最速と最強を証明せよ。</p>
-            <div class="server-ip-box">
-                <span class="ip-label">Server IP</span>
-                <span class="ip-address">play.turboangle.net</span>
-            </div>
-            <a href="https://discord.gg/yourlink" class="btn-primary" target="_blank">Discordに参加</a>
-        </div>
-    </section>
+        <!-- Link to Custom CSS -->
+        <link rel="stylesheet" href="style.css" />
 
-    <section id="about" class="section">
+        <!-- FontAwesome for Modern Icons -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        />
+    </head>
+    <body>
         <div class="container">
-            <h2 class="section-title">Welcome to <span>TurboAngle</span></h2>
-            <p class="section-desc">
-                古代の試練が眠る遺跡へようこそ。<br>
-                ここでは、アスレチックでの極限のスピード（Turbo）と、コロッセオでの緻密な戦闘（Angle）が求められます。青き魂のランタンが導く先で、あなたを待つものとは...。
-            </p>
-        </div>
-    </section>
+            <!-- Header Section -->
+            <header class="header">
+                <!-- サーバーアイコン画像。送ってもらう画像を icon.png という名前で同じフォルダに入れてください -->
+                <img src="icon.png" alt="TurboAngle Icon" class="logo" />
 
-    <section id="features" class="section bg-darker">
-        <div class="container">
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h3 class="feature-title">Athletic</h3>
-                    <p>遺跡に張り巡らされたギミック。駆け抜け、ジャンプし、次のエリアをアンロックせよ。</p>
-                </div>
-                <div class="feature-card">
-                    <h3 class="feature-title">Duel Colosseum</h3>
-                    <p>1vs1の真剣勝負。磨き上げたプレイスキルで、サーバー最強の称号を手にしろ。</p>
-                </div>
-                <div class="feature-card">
-                    <h3 class="feature-title">The Grand Sage</h3>
-                    <p>謎に包まれた「大賢者」。試練を乗り越えた者だけが、その声を聞くことができる。</p>
-                </div>
-            </div>
-        </div>
-    </section>
+                <h1>TurboAngle Network</h1>
+                <p class="subtitle">
+                    A Minecraft server run by a passionate student.
+                </p>
 
-    <footer class="footer">
-        <p>&copy; 2026 TurboAngle Server. All Rights Reserved.</p>
-    </footer>
-</body>
+                <div class="ip-box">
+                    <span>IP:</span> <code>turboangle.net</code>
+                </div>
+            </header>
+
+            <!-- Main Content -->
+            <main>
+                <!-- About Section -->
+                <section class="about">
+                    <h2>About Us</h2>
+                    <p>
+                        とある学生が趣味で運営しているマインクラフトサーバー。<br />最新の環境で快適なプレイを提供します。
+                    </p>
+                </section>
+
+                <!-- Updates Section -->
+                <section class="updates">
+                    <h2>Latest Update</h2>
+                    <div class="card">
+                        <div class="card-badge">Version 3.1</div>
+                        <h3>Network Update</h3>
+                        <p class="update-text">
+                            <code>turboangle.f5.si</code> から
+                            <strong>turboangle.net</strong> へ。<br />
+                            ついに夢の独自ドメイン化！
+                            <code>map.turboangle.net</code> も稼働開始！
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Action Buttons Section -->
+                <section class="actions">
+                    <a href="https://map.turboangle.net" class="btn btn-map">
+                        <i class="fa-solid fa-map-location-dot"></i> Live Map
+                    </a>
+                    <a
+                        href="https://discord.gg/AeesdQFhk2"
+                        class="btn btn-discord"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <i class="fa-brands fa-discord"></i> Join Discord
+                    </a>
+                </section>
+            </main>
+
+            <!-- Footer Section -->
+            <footer>
+                <p>&copy; 2026 TurboAngle Network. All rights reserved.</p>
+            </footer>
+        </div>
+    </body>
 </html>
