@@ -4,78 +4,542 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>TurboAngle Network</title>
+        <style>
+            :root {
+                --bg: #05070d;
+                --bg2: #0b1220;
+                --card: rgba(10, 16, 28, 0.72);
+                --card-border: rgba(120, 180, 255, 0.18);
+                --text: #eaf2ff;
+                --muted: #a9b7d3;
+                --accent: #29a7ff;
+                --accent-2: #0b63ff;
+                --glow: rgba(41, 167, 255, 0.35);
+                --shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+                --radius: 24px;
+                --max: 1120px;
+            }
 
-        <!-- Link to Custom CSS -->
-        <link rel="stylesheet" href="style.css" />
+            * {
+                box-sizing: border-box;
+            }
 
-        <!-- FontAwesome for Modern Icons -->
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        />
+            html {
+                scroll-behavior: smooth;
+            }
+
+            body {
+                margin: 0;
+                font-family:
+                    Inter,
+                    "Noto Sans JP",
+                    system-ui,
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    sans-serif;
+                color: var(--text);
+                background:
+                    radial-gradient(
+                        circle at top,
+                        rgba(41, 167, 255, 0.18),
+                        transparent 32%
+                    ),
+                    radial-gradient(
+                        circle at 20% 20%,
+                        rgba(11, 99, 255, 0.12),
+                        transparent 26%
+                    ),
+                    linear-gradient(
+                        180deg,
+                        #03050a 0%,
+                        #070b14 55%,
+                        #05070d 100%
+                    );
+                min-height: 100vh;
+                overflow-x: hidden;
+            }
+
+            body::before {
+                content: "";
+                position: fixed;
+                inset: 0;
+                pointer-events: none;
+                background-image:
+                    linear-gradient(
+                        rgba(255, 255, 255, 0.03) 1px,
+                        transparent 1px
+                    ),
+                    linear-gradient(
+                        90deg,
+                        rgba(255, 255, 255, 0.03) 1px,
+                        transparent 1px
+                    );
+                background-size: 72px 72px;
+                mask-image: radial-gradient(
+                    circle at center,
+                    black 35%,
+                    transparent 100%
+                );
+                opacity: 0.18;
+            }
+
+            .container {
+                width: min(var(--max), calc(100% - 32px));
+                margin: 0 auto;
+            }
+
+            .hero {
+                min-height: 100vh;
+                display: grid;
+                align-items: center;
+                padding: 28px 0 48px;
+                position: relative;
+            }
+
+            .topbar {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 16px;
+                margin-bottom: 42px;
+            }
+
+            .brand {
+                display: flex;
+                align-items: center;
+                gap: 14px;
+                text-decoration: none;
+                color: var(--text);
+            }
+
+            .mark {
+                width: 54px;
+                height: 54px;
+                border-radius: 18px;
+                display: grid;
+                place-items: center;
+                background:
+                    radial-gradient(
+                        circle at 30% 25%,
+                        rgba(255, 255, 255, 0.35),
+                        transparent 24%
+                    ),
+                    linear-gradient(
+                        145deg,
+                        rgba(41, 167, 255, 0.95),
+                        rgba(11, 99, 255, 0.9)
+                    );
+                box-shadow:
+                    0 0 0 1px rgba(255, 255, 255, 0.08),
+                    0 16px 40px rgba(11, 99, 255, 0.32);
+                font-weight: 900;
+                letter-spacing: 0.06em;
+            }
+
+            .brand h1 {
+                margin: 0;
+                font-size: 1rem;
+                font-weight: 800;
+                line-height: 1.2;
+            }
+
+            .brand p {
+                margin: 2px 0 0;
+                color: var(--muted);
+                font-size: 0.88rem;
+            }
+
+            .pill {
+                padding: 10px 14px;
+                border-radius: 999px;
+                background: rgba(255, 255, 255, 0.04);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                color: var(--muted);
+                font-size: 0.92rem;
+                backdrop-filter: blur(12px);
+            }
+
+            .hero-grid {
+                display: grid;
+                grid-template-columns: 1.2fr 0.8fr;
+                gap: 28px;
+                align-items: center;
+            }
+
+            .headline {
+                max-width: 720px;
+            }
+
+            .eyebrow {
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                padding: 8px 14px;
+                border-radius: 999px;
+                background: rgba(41, 167, 255, 0.1);
+                border: 1px solid rgba(41, 167, 255, 0.22);
+                color: #cfeaff;
+                font-size: 0.92rem;
+                margin-bottom: 18px;
+            }
+
+            .eyebrow::before {
+                content: "";
+                width: 9px;
+                height: 9px;
+                border-radius: 50%;
+                background: var(--accent);
+                box-shadow: 0 0 16px var(--glow);
+            }
+
+            h2 {
+                margin: 0;
+                font-size: clamp(2.4rem, 5vw, 5rem);
+                line-height: 0.95;
+                letter-spacing: -0.04em;
+            }
+
+            .subtitle {
+                margin: 18px 0 0;
+                max-width: 60ch;
+                color: var(--muted);
+                font-size: clamp(1rem, 1.8vw, 1.18rem);
+                line-height: 1.8;
+            }
+
+            .cta-row {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 14px;
+                margin-top: 30px;
+            }
+
+            .btn {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                padding: 14px 20px;
+                border-radius: 16px;
+                text-decoration: none;
+                font-weight: 700;
+                transition:
+                    transform 0.2s ease,
+                    box-shadow 0.2s ease,
+                    border-color 0.2s ease;
+                border: 1px solid transparent;
+            }
+
+            .btn:hover {
+                transform: translateY(-2px);
+            }
+
+            .btn-primary {
+                color: #08101d;
+                background: linear-gradient(
+                    135deg,
+                    #8ad4ff,
+                    #4db6ff 45%,
+                    #1b7bff
+                );
+                box-shadow: 0 12px 30px rgba(41, 167, 255, 0.22);
+            }
+
+            .btn-secondary {
+                color: var(--text);
+                background: rgba(255, 255, 255, 0.04);
+                border-color: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(14px);
+            }
+
+            .visual {
+                position: relative;
+                min-height: 460px;
+                display: grid;
+                place-items: center;
+                isolation: isolate;
+            }
+
+            .orb {
+                position: absolute;
+                inset: 50% auto auto 50%;
+                width: min(100%, 440px);
+                aspect-ratio: 1;
+                transform: translate(-50%, -50%);
+                border-radius: 50%;
+                background:
+                    radial-gradient(
+                        circle at 30% 25%,
+                        rgba(255, 255, 255, 0.26),
+                        transparent 22%
+                    ),
+                    radial-gradient(
+                        circle at center,
+                        rgba(53, 175, 255, 0.95),
+                        rgba(12, 64, 180, 0.92)
+                    );
+                filter: blur(0.2px);
+                box-shadow:
+                    0 0 0 1px rgba(255, 255, 255, 0.08),
+                    0 0 70px rgba(41, 167, 255, 0.35);
+            }
+
+            .ring {
+                position: absolute;
+                inset: 50% auto auto 50%;
+                width: min(100%, 530px);
+                aspect-ratio: 1;
+                transform: translate(-50%, -50%) rotate(-12deg);
+                border-radius: 50%;
+                border: 18px solid rgba(62, 168, 255, 0.12);
+                border-top-color: rgba(62, 168, 255, 0.62);
+                border-left-color: rgba(62, 168, 255, 0.42);
+                filter: drop-shadow(0 0 20px rgba(41, 167, 255, 0.2));
+                opacity: 0.9;
+            }
+
+            .tr {
+                position: relative;
+                z-index: 1;
+                font-size: clamp(5rem, 16vw, 10rem);
+                font-weight: 900;
+                line-height: 1;
+                letter-spacing: -0.1em;
+                color: #0c2f85;
+                text-shadow:
+                    0 0 0.5px rgba(255, 255, 255, 0.35),
+                    0 10px 30px rgba(0, 0, 0, 0.2),
+                    0 0 34px rgba(0, 161, 255, 0.25);
+                transform: translateY(8px);
+                user-select: none;
+            }
+
+            .section {
+                padding: 22px 0 72px;
+            }
+
+            .grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 22px;
+            }
+
+            .card {
+                background: var(--card);
+                border: 1px solid var(--card-border);
+                border-radius: var(--radius);
+                box-shadow: var(--shadow);
+                backdrop-filter: blur(16px);
+                padding: 24px;
+            }
+
+            .card h3 {
+                margin: 0 0 14px;
+                font-size: 1.2rem;
+            }
+
+            .card p,
+            .card li {
+                color: var(--muted);
+                line-height: 1.8;
+            }
+
+            .update-title {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                gap: 10px;
+                margin-bottom: 10px;
+            }
+
+            .tag {
+                display: inline-flex;
+                align-items: center;
+                padding: 6px 10px;
+                border-radius: 999px;
+                font-size: 0.82rem;
+                font-weight: 700;
+                color: #d9f1ff;
+                background: rgba(41, 167, 255, 0.14);
+                border: 1px solid rgba(41, 167, 255, 0.22);
+            }
+
+            .update-name {
+                margin: 0;
+                font-size: 1.55rem;
+                line-height: 1.25;
+            }
+
+            .update-list {
+                margin: 14px 0 0;
+                padding-left: 18px;
+            }
+
+            .meta {
+                display: grid;
+                gap: 12px;
+            }
+
+            .meta-row {
+                display: flex;
+                justify-content: space-between;
+                gap: 16px;
+                padding: 14px 16px;
+                border-radius: 18px;
+                background: rgba(255, 255, 255, 0.03);
+                border: 1px solid rgba(255, 255, 255, 0.06);
+            }
+
+            .meta-row span:first-child {
+                color: #dbe9ff;
+                font-weight: 700;
+            }
+
+            .meta-row a {
+                color: #8ad4ff;
+                text-decoration: none;
+                word-break: break-all;
+            }
+
+            .meta-row a:hover {
+                text-decoration: underline;
+            }
+
+            footer {
+                padding: 0 0 34px;
+                color: rgba(169, 183, 211, 0.78);
+                text-align: center;
+                font-size: 0.92rem;
+            }
+
+            @media (max-width: 900px) {
+                .hero-grid,
+                .grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .visual {
+                    min-height: 360px;
+                }
+
+                .topbar {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+            }
+        </style>
     </head>
     <body>
-        <div class="container">
-            <!-- Header Section -->
-            <header class="header">
-                <!-- サーバーアイコン画像。送ってもらう画像を icon.png という名前で同じフォルダに入れてください -->
-                <img src="icon.png" alt="TurboAngle Icon" class="logo" />
-
-                <h1>TurboAngle Network</h1>
-                <p class="subtitle">
-                    A Minecraft server run by a passionate student.
-                </p>
-
-                <div class="ip-box">
-                    <span>IP:</span> <code>turboangle.net</code>
-                </div>
-            </header>
-
-            <!-- Main Content -->
-            <main>
-                <!-- About Section -->
-                <section class="about">
-                    <h2>About Us</h2>
-                    <p>
-                        とある学生が趣味で運営しているマインクラフトサーバー。<br />最新の環境で快適なプレイを提供します。
-                    </p>
-                </section>
-
-                <!-- Updates Section -->
-                <section class="updates">
-                    <h2>Latest Update</h2>
-                    <div class="card">
-                        <div class="card-badge">Version 3.1</div>
-                        <h3>Network Update</h3>
-                        <p class="update-text">
-                            <code>turboangle.f5.si</code> から
-                            <strong>turboangle.net</strong> へ。<br />
-                            ついに夢の独自ドメイン化！
-                            <code>map.turboangle.net</code> も稼働開始！
-                        </p>
-                    </div>
-                </section>
-
-                <!-- Action Buttons Section -->
-                <section class="actions">
-                    <a href="https://map.turboangle.net" class="btn btn-map">
-                        <i class="fa-solid fa-map-location-dot"></i> Live Map
-                    </a>
+        <main class="hero">
+            <div class="container">
+                <div class="topbar">
                     <a
-                        href="https://discord.gg/AeesdQFhk2"
-                        class="btn btn-discord"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        class="brand"
+                        href="#top"
+                        aria-label="TurboAngle Network"
                     >
-                        <i class="fa-brands fa-discord"></i> Join Discord
+                        <div class="mark">TR</div>
+                        <div>
+                            <h1>TurboAngle Network</h1>
+                            <p>Simple • Modern • Minecraft Server</p>
+                        </div>
                     </a>
-                </section>
-            </main>
+                    <div class="pill">
+                        学生が趣味で運営しているマインクラフトサーバー
+                    </div>
+                </div>
 
-            <!-- Footer Section -->
-            <footer>
-                <p>&copy; 2026 TurboAngle Network. All rights reserved.</p>
-            </footer>
-        </div>
+                <div class="hero-grid">
+                    <section class="headline" id="top">
+                        <div class="eyebrow">3.1 Network Update</div>
+                        <h2>
+                            独自ドメイン化で、 <br />もっと近く、もっと快適に。
+                        </h2>
+                        <p class="subtitle">
+                            turboangle.f5.si から turboangle.net
+                            へ移行しました。ついに夢の独自ドメイン化。 さらに
+                            map.turboangle.net
+                            も追加され、サーバー本体とマップの導線がよりわかりやすくなりました。
+                        </p>
+                        <div class="cta-row">
+                            <a
+                                class="btn btn-primary"
+                                href="https://map.turboangle.net"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                >Mapを開く</a
+                            >
+                            <a
+                                class="btn btn-secondary"
+                                href="https://discord.gg/AeesdQFhk2"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                >Discordに参加</a
+                            >
+                        </div>
+                    </section>
+
+                    <div class="visual" aria-hidden="true">
+                        <div class="ring"></div>
+                        <div class="orb"></div>
+                        <div class="tr">TR</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <section class="section">
+            <div class="container grid">
+                <article class="card">
+                    <div class="update-title">
+                        <span class="tag">UPDATE</span>
+                        <h3 class="update-name">3.1 Network Update</h3>
+                    </div>
+                    <p>
+                        サイトと導線を整理し、サーバーの入口をよりシンプルにしました。
+                    </p>
+                    <ul class="update-list">
+                        <li>turboangle.f5.si → turboangle.net</li>
+                        <li>map.turboangle.net を新設</li>
+                        <li>Mapボタンからマップへ直接リダイレクト</li>
+                    </ul>
+                </article>
+
+                <article class="card">
+                    <h3>概要</h3>
+                    <p>
+                        とある学生が趣味で運営しているマインクラフトサーバーです。
+                        気軽に遊べて、少しだけ特別感のある空間を目指しています。
+                    </p>
+                    <div class="meta">
+                        <div class="meta-row">
+                            <span>Server</span>
+                            <span>turboangle.net</span>
+                        </div>
+                        <div class="meta-row">
+                            <span>Map</span>
+                            <a
+                                href="https://map.turboangle.net"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                >map.turboangle.net</a
+                            >
+                        </div>
+                        <div class="meta-row">
+                            <span>Discord</span>
+                            <a
+                                href="https://discord.gg/AeesdQFhk2"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                >discord.gg/AeesdQFhk2</a
+                            >
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <footer>© TurboAngle Network</footer>
     </body>
 </html>
